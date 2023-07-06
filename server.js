@@ -7,11 +7,7 @@ const Task = require("./Task");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-  })
-);
+app.use(cors());
 
 app.get("/api/tasks", async (req, res) => {
   try {
