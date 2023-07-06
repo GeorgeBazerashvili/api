@@ -53,6 +53,16 @@ app.put("/api/tasks/:taskId", async (req, res) => {
   }
 });
 
+app.delete("/api/tasks/clearall", async (req, res) => {
+  try {
+    await Task.deleteMany({});
+    res.status(200).json({ message: "successfully deleted" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: error.message });
+  }
+});
+
 app.delete("/api/tasks/:taskId", async (req, res) => {
   try {
     const { taskId } = req.params;
@@ -75,5 +85,5 @@ mongoose
     });
   })
   .catch((err) => {
-    console.error(err);
+    console.error(err.message);
   });
