@@ -70,9 +70,14 @@ app.delete("/api/tasks/:taskId", async (req, res) => {
   }
 });
 
-mongoose.connect(process.env.MONGO_URI).then(() => {
-  console.log("DB connected...");
-  app.listen(process.env.PORT, () => {
-    console.log(`connected to port ${process.env.PORT}`);
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("DB connected...");
+    app.listen(process.env.PORT, () => {
+      console.log(`connected to port ${process.env.PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error(err);
   });
-});
